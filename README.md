@@ -35,3 +35,11 @@ Todo:
   * Enterprise grade logging
   * Online administration
   * Customizable fee schedule
+
+-----
+
+I believe a strong, secure, auditable source code for an exchange is crucial to the success of cryptocurrency. Donations to further development are accepted:
+
+  * BTC 1CHvCfKL8Wt2eSt4VVRdcZTJNuN1iTPwLx
+  * LTC Lg1ykfYMvuqLC2SpC4h6DfZFcJF5yvNC2Z
+  * VTC VuwrP9f6DhJpX4XSozgKAexa9oCBq5t6k5
