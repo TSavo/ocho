@@ -1,0 +1,11 @@
+<div ng-include="'partials/navbar'"></div>
+
+Users
+
+<div class="row marketing">
+  <div ng-repeat="user in users">
+      <h4>{{user.id}}</h4>
+      <p>{{user.email}}</p>
+  </div>
+</div>
+

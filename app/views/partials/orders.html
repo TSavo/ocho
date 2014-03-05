@@ -1,0 +1,51 @@
+<div ng-include="'partials/navbar'"></div>
+
+
+
+<ng-form>
+
+  <div ng-repeat="item in allowed">
+    <button ng-click="loadAllowed(item)">{{item.text}}</button><br>
+  </div>
+
+  <select ng-model="coinA">
+    <option ng-repeat="coin in coins" >{{coin}}</option>
+  </select>
+  per
+  <select ng-model="coinB">
+    <option ng-repeat="coin in coins" >{{coin}}</option>
+  </select>
+  <br>
+  <br>
+
+  <div ng-controller="BalancesCtrl">
+    <div>
+      (You have {{getBalance(coinA).amount}} {{getBalance(coinA).symbol }} and {{getBalance(coinB).amount}} {{getBalance(coinB).symbol }}.)
+    </div>
+  </div>
+
+  <input type="radio" ng-model="side" value="buy"><span ng-click="side='buy'">Buy</span></input> <input type="radio" ng-model="side" value="sell"><span ng-click="side='sell'">Sell</span></input>
+  <input type="string" ng-model="quantity">quantity </input>
+  @ <input type="string" ng-model="price">price</input>
+  <br>
+  <button ng-disabled="!readyToOrder()" ng-click="place()">{{getButtonText()}}</button>
+
+
+</ng-form>
+
+<div class="row marketing">
+  <h1>Buy orders</h1>
+  <div ng-repeat="buyorder in buyorders | filter:{ sellsymbol: coinB, buysymbol: coinA} | orderBy : 'price':true ">
+   <span ng-click="loadOrder('sell', buyorder)">Buy {{buyorder.quantity}} {{buyorder.buysymbol}} @ {{buyorder.price}} {{buyorder.sellsymbol}} (Total {{ multiply(buyorder.quantity, buyorder.price)}} {{buyorder.sellsymbol}})
+   </span>
+   <button ng-click="cancel('buy', buyorder.id)">Cancel</button>
+  </div>
+
+  <h1>Sell orders</h1>
+  <div ng-repeat="sellorder in sellorders| filter:{ sellsymbol: coinA, buysymbol: coinB} | orderBy : 'price':false ">
+   <span ng-click="loadOrder('buy', sellorder)">Sell {{sellorder.quantity}} {{sellorder.sellsymbol}} @ {{sellorder.price}} {{sellorder.buysymbol}} (Total {{ multiply(sellorder.quantity, sellorder.price) }} {{ sellorder.buysymbol }})
+   </span>
+   <button ng-click="cancel('sell', sellorder.id)">Cancel</button>
+  </div>
+</div>
+

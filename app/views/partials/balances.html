@@ -1,0 +1,9 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="row marketing">
+  <div ng-repeat="balance in balances">
+      <h4>{{balance.symbol}}</h4>
+      <p>{{balance.amount}}</p>
+      <p>Deposit address: {{ getAddress(balance.symbol) }}
+  </div>
+</div>
